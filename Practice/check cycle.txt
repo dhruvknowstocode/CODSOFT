@@ -1,0 +1,10 @@
+Node* temp=head;
+    map<Node*,string>visited;
+    while(temp!=NULL){
+        if(map[visited]==true){
+            return 0;
+        }
+        map[visited]="true";
+        temp=temp->next;
+    }
+    return 1;

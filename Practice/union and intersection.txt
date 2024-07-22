@@ -1,0 +1,69 @@
+#include <iostream>
+#include <bits/stdc++.h>
+#include <vector>
+using namespace std;
+vector<int> unions(vector<int> arr1,vector<int> arr2){
+    int i=0;
+    int j=0;
+    vector<int> arr3;
+    while(i<arr1.size()&&j<arr2.size()){
+        if(arr1[i]>arr2[j]){
+            arr3.push_back(arr2[j]);
+            j++;
+        }
+        if(arr1[i]<arr2[j]){
+            arr3.push_back(arr1[i]);
+            i++;
+        }
+        else if(arr1[i]==arr2[j]){
+            arr3.push_back(arr1[i]);
+            i++;
+            j++;
+        }
+    }
+    while(i<arr1.size()){
+        arr3.push_back(arr1[i]);
+        i++;
+    }
+    while(j<arr2.size()){
+        arr3.push_back(arr2[j]);
+        j++;
+    }
+    return arr3;
+}
+vector<int> intersection(vector<int> arr1,vector<int> arr2){
+    int i=0;
+    int j=0;
+    vector<int> arr3;
+    while(i<arr1.size()&&j<arr2.size()){
+        if(arr1[i]>arr2[j]){
+            j++;
+        }
+        if(arr1[i]<arr2[j]){
+            i++;
+        }
+        else if(arr1[i]==arr2[j]){
+            arr3.push_back(arr1[i]);
+            i++;
+            j++;
+        }
+    }
+    return arr3;
+}
+void print(vector<int> a){
+    for(int i=0;i<a.size();i++){
+        cout<<a[i]<<" ";
+    }
+}
+int main() {
+    vector<int> arr1={1,2,3,4};
+    vector<int> arr2={3,4,5,6};
+    vector<int> un=unions(arr1,arr2);
+    cout<<"Union is: ";
+    print(un);
+    cout<<endl;
+    vector<int> in=intersection(arr1,arr2);
+    cout<<"Intersection is: ";
+    print(in);
+    return 0;
+}

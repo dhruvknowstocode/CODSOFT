@@ -1,0 +1,33 @@
+int count(Node* head,int target){
+    Node* temp=head;
+    int cnt=0;
+    while(temp!=NULL){
+        if(temp->data==target){
+            cnt++;
+        }
+        temp=temp->next;
+    }
+    return cnt;
+}
+Node* sort(Node* &head){
+    int zerocnt=count(head,0);
+    int onecnt=count(head,1);
+    int twocnt=count(head,2);
+    Node* temp=head;
+    while(temp!=NULL){
+        if(zerocnt>0){
+            temp->data=0;
+            zerocnt--;
+        }
+        else if(onecnt>0){
+            temp->data=1;
+            onecnt--;
+        }
+        else{
+            temp->data=2;
+            twocnt--;
+        }
+        temp=temp->next;
+    }
+    return head;
+}

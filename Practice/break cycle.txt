@@ -1,0 +1,11 @@
+void breakcycle(Node* head){
+    if(head==NULL){
+        return;
+    }
+    Node* end=starting(head);
+    Node* temp=end;
+    while(temp->next!=end){
+        temp=temp->next;
+    }
+    temp->next=NULL;
+}

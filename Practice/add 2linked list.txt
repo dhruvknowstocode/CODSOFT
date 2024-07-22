@@ -1,0 +1,122 @@
+#include<iostream>
+using namespace std ;
+class Node{
+    public:
+    int data;
+    Node* next;
+    Node(int data){
+        this->data=data;
+        this->next=next;
+    }
+};
+void insert(Node* &head,Node* &tail,int d,int pos){
+    if(pos==1){
+        Node* nodetoinsert=new Node(d);
+        nodetoinsert->next=head;
+        head=nodetoinsert;
+        tail=nodetoinsert->next;
+    }
+    else{
+        Node* temp=head;
+        int cnt=1;
+        while(cnt<pos-1){
+            temp=temp->next;
+            cnt++;
+        }
+        if(temp->next==NULL){
+            Node* nodetoinsert=new Node(d);
+            nodetoinsert->next=temp->next;
+            temp->next=nodetoinsert;
+            tail=temp->next;
+        }
+        else{
+            Node* nodetoinsert=new Node(d);
+            nodetoinsert->next=temp->next;
+            temp->next=nodetoinsert;
+        }
+    }
+}
+void print(Node* head){
+    Node* temp=head;
+    while(temp!=NULL){
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+    cout<<endl;
+}
+Node* reverse(Node* head) {
+        if(head==NULL||head->next==NULL){
+            return head;
+        }
+        Node* forward;
+        Node* curr=head;
+        Node* prev=NULL;
+        while(curr!=NULL){
+            forward=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=forward;
+        }
+        return prev;
+    }
+void insertAtTail(Node* &head, Node* &tail, int val){
+        Node* temp = new Node(val);
+        if(head == NULL){
+            head = temp;
+            tail = temp;
+        }
+        else{
+            tail -> next = temp;
+            tail = temp;
+        }
+    }
+Node* add(Node* l1,Node* l2){
+        int carry = 0;
+        Node* ansHead = NULL;
+        Node* ansTail = NULL;
+        while(l1 != NULL || l2 != NULL || carry != 0){
+            int val1 = 0;
+            if(l1 != NULL){
+                val1 = l1 -> data;
+            }
+            int val2 = 0;
+            if(l2 != NULL){
+                val2 = l2 -> data;
+            }
+            int sum = carry + val1 + val2;
+            int digit = sum % 10;
+            insertAtTail(ansHead, ansTail, digit);
+            carry = sum / 10;
+            if(l1 != NULL){
+                l1 = l1 -> next;
+            }
+            if(l2 != NULL){
+                l2 = l2 -> next;
+            }
+        }
+        return ansHead;
+    }
+Node* add2(Node* first,Node* second){
+    first=reverse(first);
+    second=reverse(second);
+    Node* ans=add(first,second);
+}
+int main(){
+    Node* head1=NULL;
+    Node* head2=NULL;
+    Node* tail1=NULL;
+    Node* tail2=NULL;
+    insert(head1,tail1,1,1);
+    insert(head1,tail1,2,2);
+    insert(head1,tail1,3,3);
+    insert(head2,tail2,5,1);
+    insert(head2,tail2,6,2);
+    insert(head2,tail2,7,3);
+    insert(head2,tail2,8,4);
+    print(head1);
+    print(head2);
+    Node* ans=add2(head1,head2);
+    Node* finalans=reverse(ans);
+    print(finalans);
+    return 0;
+}

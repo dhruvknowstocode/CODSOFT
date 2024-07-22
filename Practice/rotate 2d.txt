@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+int transpose(int temp[][3],int arr[][3],int r,int c){
+     for(int row=0;row<3;row++){
+        for(int col=0;col<3;col++){
+            temp[row][col]=arr[col][row];  
+        }
+    } 
+}
+int rotate(int rot[][3],int temp[][3],int r,int c){
+    for(int row=0;row<3;row++){
+        for(int col=0;col<3;col++){
+            rot[row][col]=temp[row][2-col];
+        }
+    }
+}
+int main(){
+    int arr[3][3];
+    int temp[3][3];
+    int rot[3][3];
+    cout<<"Enter the elements:"<<endl;
+    for(int row=0;row<3;row++){
+        for(int col=0;col<3;col++){
+            cin>>arr[row][col];
+        }
+    } 
+    cout<<"Your matrix is"<<endl;
+    for(int row=0;row<3;row++){
+        for(int col=0;col<3;col++){
+            cout<<arr[row][col];
+        }
+        cout<<endl;
+    }
+    cout<<"transposed matrix: "<<endl;
+    transpose(temp,arr,3,3);
+    for(int row=0;row<3;row++){
+        for(int col=0;col<3;col++){
+            cout<<temp[row][col];
+        }
+        cout<<endl;
+    }
+    cout<<"Rotated Matrix :\n";
+    rotate(rot,temp,3,3);
+    for(int row=0;row<3;row++){
+        for(int col=0;col<3;col++){
+            cout<<rot[row][col];
+        }
+        cout<<endl;
+    }
+   }

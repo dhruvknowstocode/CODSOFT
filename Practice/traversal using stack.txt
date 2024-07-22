@@ -1,0 +1,68 @@
+Preorder:
+void solve(Node* root,vector<int> &ans){
+    stack<Node*> s;
+    s.push(root);
+    while(!s.empty()){
+        Node* curr=s.top();
+        s.pop();
+        ans.push_back(curr->data);
+        if(curr->right!=NULL){
+            s.push(curr->right);
+        }
+        if(curr->left!=NULL){
+            s.push(curr->left);
+        }
+    }
+}
+vector <int> preorder(Node* root){
+    vector<int> ans;
+    solve(root,ans);
+    return ans;
+}
+Inorder:
+void solve(Node* root,vector<int> &ans){
+        stack<Node*> s;
+        Node* curr=root;
+        while(curr!=NULL||!s.empty()){
+            while(curr!=NULL){
+                s.push(curr);
+                curr=curr->left;
+            }
+            curr=s.top();
+            s.pop();
+            ans.push_back(curr->data);
+            curr=curr->right;
+        }
+    }
+    vector<int> inOrder(Node* root)
+    {
+        vector<int> ans;
+        solve(root,ans);
+        return ans;
+    }
+Postorder:
+void solve(Node* root, vector<int> &ans) {
+    stack<Node*> s1, s2;
+    s1.push(root);
+
+    while (!s1.empty()) {
+        Node* curr = s1.top();
+        s1.pop();
+        s2.push(curr);
+
+        if (curr->left)
+            s1.push(curr->left);
+        if (curr->right)
+            s1.push(curr->right);
+    }
+
+    while (!s2.empty()) {
+        ans.push_back(s2.top()->data);
+        s2.pop();
+    }
+    }
+    vector<int> postOrder(Node* node) {
+        vector<int> ans;
+        solve(node,ans);
+        return ans;
+    }

@@ -1,0 +1,94 @@
+#include <iostream>
+using namespace std;
+class Node{
+    public:
+    int data;
+    Node* next;
+    Node(int data){
+        this->data=data;
+        this->next=next;
+    }
+};
+void insert(Node* &head,Node* &tail,int data,int position){
+    if(position==1){
+        Node* temp=new Node(data);
+        temp->next=head;
+        head=temp;
+        tail=temp;
+        return;
+    }
+    else{
+        Node* temp=head;
+        int cnt=1;
+        while(cnt<position-1){
+            temp=temp->next;
+            cnt++;
+        }
+        if(temp->next==NULL){
+            Node* nodetoinsert=new Node(data);
+            temp->next=nodetoinsert;
+            nodetoinsert->next=NULL;
+            tail=tail->next;
+        }
+        else{
+            Node* nodetoinsert=new Node(data);
+            nodetoinsert->next=temp->next;
+            temp->next=nodetoinsert;
+        }
+    }
+}
+void deletee(Node* &head,int position){
+    if(head==NULL){
+        cout<<"List is empty ";
+        return;
+    }
+    if(position==1){
+        Node* temp=head;
+        head=head->next;
+        temp->next=NULL;
+    }
+    else{
+        Node* curr=head;
+        Node* prev=NULL;
+        int cnt=1;
+        while(cnt<position){
+            prev=curr;
+            curr=curr->next;
+            cnt++;
+        }
+        prev->next=curr->next;
+        curr->next=NULL;
+    }
+}
+void print(Node* head){
+    Node* temp=head;
+    while(temp!=NULL){
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+    cout<<endl;
+}
+int main() {
+    Node* head=NULL;
+    Node* tail=NULL;
+    insert(head,tail,10,1);
+    print(head);
+    insert(head,tail,5,1);
+    print(head);
+    insert(head,tail,15,3);
+    print(head);
+    insert(head,tail,20,4);
+    print(head);
+    deletee(head,1);
+    print(head);
+    deletee(head,2);
+    print(head);
+    deletee(head,2);
+    print(head);
+    deletee(head,1);
+    print(head);
+    deletee(head,1);
+    print(head);
+    
+    return 0;
+}

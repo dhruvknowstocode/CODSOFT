@@ -1,0 +1,73 @@
+#include <iostream>
+using namespace std;
+class Node{
+    public:
+    int data;
+    Node* next;
+    Node* prev;
+    Node(int data){
+        this->data=data;
+        this->next=next;
+        this->prev=prev;
+    }
+};
+int getlen(Node* head){
+    Node* temp=head;
+    int cnt=0;
+    while(temp!=NULL){
+        temp=temp->next;
+        cnt++;
+    }
+    return cnt;
+}
+void insertathead(Node* &head,int d){
+    Node* temp=new Node(d);
+    temp->next=head;
+    head->prev=temp;
+    head=temp;
+}
+void insertattail(Node* &tail,int d){
+    Node* temp=new Node(d);
+    tail->next=temp;
+    temp->prev=tail;
+    tail=temp;
+}
+void insertatposition(Node* &head,Node* &tail,int d,int position){
+    if(position==1){
+        insertathead(head,d);
+        return;
+    }
+    else{
+        Node* nodetoinsert=new Node(d);
+        Node* temp=head;
+        int cnt=1;
+        while(cnt<position-1){
+            temp=temp->next;
+            cnt++;
+        }
+        nodetoinsert->next=temp->next;
+        temp->next->prev=nodetoinsert;
+        temp->next=nodetoinsert;
+        nodetoinsert->prev=temp;
+    }
+}
+void print(Node* head){
+    Node* temp=head;
+    while(temp!=NULL){
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+}
+int main() {
+    Node* node1=new Node(10);
+    Node* head=node1;
+    Node* tail=node1;
+    insertathead(head,5);
+    insertathead(head,3);
+    insertathead(head,1);
+    insertattail(tail,20);
+    insertatposition(head,tail,2,2);
+    insertatposition(head,tail,25,7);
+    print(head);
+    return 0;
+}

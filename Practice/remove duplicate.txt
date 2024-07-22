@@ -1,0 +1,15 @@
+Node* removeduplicate(Node* head){
+    Node* curr=head;
+    while(curr!=NULL){
+        if((curr->next!=NULL)&&curr->next->data==curr->data){
+           Node* next_next=curr->next->next;
+           Node* nodetodelete=curr->next;
+           delete(nodetodelete);
+           curr->next=next_next;
+        }
+        else{
+            curr=curr->next;
+        }
+    }
+    return head;
+}

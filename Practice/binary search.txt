@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+void print(int arr[],int s,int e){
+    for(int i=s;i<=e;i++){
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+}
+bool binarysearch(int arr[],int start,int end,int key){
+    print(arr,start,end);
+    if(start>end){
+        return false;
+    }
+    int mid=(start+end)/2;
+    if(arr[mid]==key){
+        return true;
+    }
+    if(arr[mid]<key){
+        return binarysearch(arr,mid+1,end,key);
+    }
+    else if(arr[mid]>key){
+        return binarysearch(arr,start,mid-1,key);
+    }
+}
+int main() {
+    int arr[5]={2,4,6,8,10};
+    int size=5;
+    int key=10;
+    int start=0;
+    int end=size-1;
+    bool ans=binarysearch(arr,start,end,key);
+    if(ans){
+        cout<<"found";
+    }
+    else{
+        cout<<"not found";
+    }
+    return 0;
+}

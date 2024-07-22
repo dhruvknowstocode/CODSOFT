@@ -1,0 +1,15 @@
+void solve(stack<int> &st,int count,int x){
+        if(count==0){
+            st.push(x);
+            return ;
+        }
+        int a=st.top();
+        st.pop();
+        solve(st,count-1,x);
+        st.push(a);
+    }
+    stack<int> insertAtBottom(stack<int> St,int X){
+        int count=St.size();
+        solve(St,count,X);
+        return St;
+    }

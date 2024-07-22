@@ -1,0 +1,12 @@
+void breakcycle(Node* head){
+    Node* temp=head;
+    map<Node*,string> visited;
+    while(temp!=NULL){
+        if(visited[temp]=="true"){
+            temp->next=NULL;
+            return;
+        }
+        visited[temp]="true";
+        temp=temp->next;
+    }
+}

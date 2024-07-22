@@ -1,0 +1,33 @@
+int count(vector<int> nums,int target){
+        int getcount=0;
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]==target){
+                getcount++;
+            }
+        }
+        return getcount;
+}
+vector<int> sort(vector<int> nums) {
+        int zerocnt=count(nums,0);
+        int onecnt=count(nums,1);
+        int twocnt=count(nums,2);
+        int size=zerocnt+onecnt+twocnt;
+        vector<int> temp;
+        for(int i=0;i<size;i++){
+            if(zerocnt>0){
+                temp.push_back(0);
+                zerocnt--;
+                continue;
+            }
+            if(onecnt>0){
+                temp.push_back(1);
+                onecnt--;
+                continue;
+            }
+            if(twocnt>0){
+                temp.push_back(2);
+                twocnt--;
+            }
+        }
+    return temp;    
+    }

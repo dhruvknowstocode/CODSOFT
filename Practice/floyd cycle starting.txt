@@ -1,0 +1,24 @@
+Node* floydcycle(Node* head){
+    Node* slow=head;
+    Node* fast=head;
+    while(fast!=NULL&&slow!=NULL){
+        fast=fast->next;
+        if(fast!=NULL){
+            fast=fast->next;
+        }
+        slow=slow->next;
+        if(fast==slow){
+            return slow;
+        }
+    }
+    return NULL;
+}
+int starting(Node* head){
+    Node* slow=head;
+    Node* intersection=floydcycle(head);
+    while(slow!=intersection){
+        slow=slow->next;
+        intersection=intersection->next;
+    }
+    return slow->data;
+}

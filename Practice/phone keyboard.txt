@@ -1,0 +1,33 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+void solve(string inp,string output,int index,string mapping[],vector<string>& ans){
+    if(index>=inp.size()){
+        ans.push_back(output);
+        return ;
+    }
+    int element=inp[index]-'0';
+    string value=mapping[element];
+    for(int i=0;i<value.size();i++){
+        output.push_back(value[i]);
+        solve(inp,output,index+1,mapping,ans);
+        output.pop_back();
+    }
+}
+vector<string> digit2alphabet(string inp){
+    string output;
+    vector<string> ans;
+    int index=0;
+    string mapping[10]={" "," ","abc","def","ghi","jkl","mno","pqr","stu","vxyz"};
+    solve(inp,output,index,mapping,ans);
+    return ans;
+}
+int main(){
+    string inp ="34";
+    vector<string> f=digit2alphabet(inp);
+    for(int i=0;i<f.size();i++){
+        cout<<f[i]<<endl;
+    }
+    return 0;
+}

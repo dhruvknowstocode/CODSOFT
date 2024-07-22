@@ -1,0 +1,19 @@
+#include <bits/stdc++.h>
+using namespace std;
+void saydigits(int n,int arr[]){
+    if(n<=0){
+        return ;
+    }    
+    int digits=n%10;
+    n=n/10;
+    cout<<arr[digits]<<" ";
+    saydigits(n,arr);
+}
+int main() {
+    int num;
+    cout<<"Enter value of number : ";
+    cin>>num;
+    string arr[10] = {"zero","one","two","three","four","five","six","seven","eight"              ,"nine"};
+    saydigits(num,arr);
+    return 0;
+}

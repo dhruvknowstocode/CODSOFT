@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+vector<int> solve(vector<int> arr,int target){
+    for(int i=0;i<arr.size();i++){
+        for(int j=i+1;j<arr.size();j++){
+            for(int k=j+1;k<arr.size();k++){
+                if(arr[i]+arr[j]+arr[k]==target){
+                    return{i,j,k};
+                }
+            }
+        }
+    }
+    return {"",""} ;
+}
+int main() {
+    vector<int> arr={0,1,4,6,7,11};
+    int target;
+    cout<<"Enter value of target: ";
+    cin>>target;
+    vector<int> ans=solve(arr,target);
+    if(ans.size()==0){
+        cout<<"not found";
+    }
+    for(int i=0;i<ans.size();i++){
+        cout<<ans[i]<<" ";
+    }
+    return 0;
+}
